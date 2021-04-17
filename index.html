@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+  		#manul>a,#document span{color:#00adaf;}
+  		.infont {font-weight:bold}
+  	</style>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>i-stack</title>
+  <meta name="description" content="i-stack basic page" />
+  <meta name="keywords"  content="i-stack, inesa, cloud, database, smart-city" />
+  <meta name="Resource-type" content="Document" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+    <link rel="stylesheet" href="responsive-nav.css">
+    <script src="responsive-nav.js"></script>
+	<script src="catalog.js"></script>
+
+
+    <script src='three.min.js'></script>
+    <script src='FirstPersonControls.js'></script>
+    <script src='threex.proceduralcity.js'></script>
+
+
+
+    <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+    <script src="Animation1.js"></script>
+      <script src="Animation2.js"></script>
+        <script src="Animation3.js"></script>
+    <script>
+    var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+    function init() {
+      canvas = document.getElementById("canvas");
+      anim_container = document.getElementById("animation_container");
+      dom_overlay_container = document.getElementById("dom_overlay_container");
+      var comp=AdobeAn.getComposition("54E12F46531942C3A0DAB880297E8631");
+      var lib=comp.getLibrary();
+      handleComplete1({},comp);
+    }
+    function handleComplete1(evt,comp) {
+      //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+      var lib=comp.getLibrary();
+      var ss=comp.getSpriteSheet();
+      exportRoot = new lib.Animation1copy();
+      stage = new lib.Stage(canvas);
+      //Registers the "tick" event listener.
+      fnStartAnimation = function() {
+        stage.addChild(exportRoot);
+        createjs.Ticker.setFPS(lib.properties.fps);
+        createjs.Ticker.addEventListener("tick", stage);
+      }
+      //Code to support hidpi screens and responsive scaling.
+      function makeResponsive(isResp, respDim, isScale, scaleType) {
+        var lastW, lastH, lastS=1;
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        function resizeCanvas() {
+          var w = lib.properties.width, h = lib.properties.height;
+          var iw = window.innerWidth, ih=window.innerHeight;
+          var pRatio = window.devicePixelRatio || 1, xRatio=iw/w, yRatio=ih/h, sRatio=1;
+          if(isResp) {
+            if((respDim=='width'&&lastW==iw) || (respDim=='height'&&lastH==ih)) {
+              sRatio = lastS;
+            }
+            else if(!isScale) {
+              if(iw<w || ih<h)
+                sRatio = Math.min(xRatio, yRatio);
+            }
+            else if(scaleType==1) {
+              sRatio = Math.min(xRatio, yRatio);
+            }
+            else if(scaleType==2) {
+              sRatio = Math.max(xRatio, yRatio);
+            }
+          }
+          canvas.width = w*pRatio*sRatio;
+          canvas.height = h*pRatio*sRatio;
+          canvas.style.width = dom_overlay_container.style.width = anim_container.style.width =  w*sRatio+'px';
+          canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = h*sRatio+'px';
+          stage.scaleX = pRatio*sRatio;
+          stage.scaleY = pRatio*sRatio;
+          lastW = iw; lastH = ih; lastS = sRatio;
+          stage.tickOnUpdate = false;
+          stage.update();
+          stage.tickOnUpdate = true;
+        }
+      }
+      makeResponsive(true,'both',false,1);
+      AdobeAn.compositionLoaded(lib.properties.id);
+      fnStartAnimation();
+    }
+
+//init2
+
+
+    function init2() {
+    	canvas = document.getElementById("canvas2");
+    	anim_container = document.getElementById("animation_container2");
+    	dom_overlay_container = document.getElementById("dom_overlay_container2");
+    	var comp=AdobeAn.getComposition("39B9816C794D4D2A9617B79A31916487");
+    	var lib=comp.getLibrary();
+    	var loader = new createjs.LoadQueue(false);
+    	loader.addEventListener("fileload", function(evt){handleFileLoad2(evt,comp)});
+    	loader.addEventListener("complete", function(evt){handleComplete2(evt,comp)});
+    	var lib=comp.getLibrary();
+    	loader.loadManifest(lib.properties.manifest);
+    }
+    function handleFileLoad2(evt, comp) {
+    	var images=comp.getImages();
+    	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }
+    }
+    function handleComplete2(evt,comp) {
+    	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+    	var lib=comp.getLibrary();
+    	var ss=comp.getSpriteSheet();
+    	var queue = evt.target;
+    	var ssMetadata = lib.ssMetadata;
+    	for(i=0; i<ssMetadata.length; i++) {
+    		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+    	}
+    	exportRoot = new lib.Animation2();
+    	stage = new lib.Stage(canvas2);
+    	//Registers the "tick" event listener.
+    	fnStartAnimation = function() {
+    		stage.addChild(exportRoot);
+    		createjs.Ticker.setFPS(lib.properties.fps);
+    		createjs.Ticker.addEventListener("tick", stage);
+    	}
+    	//Code to support hidpi screens and responsive scaling.
+    	function makeResponsive(isResp, respDim, isScale, scaleType) {
+    		var lastW, lastH, lastS=1;
+    		window.addEventListener('resize', resizeCanvas);
+    		resizeCanvas();
+    		function resizeCanvas() {
+    			var w = lib.properties.width, h = lib.properties.height;
+    			var iw = window.innerWidth, ih=window.innerHeight;
+    			var pRatio = window.devicePixelRatio || 1, xRatio=iw/w, yRatio=ih/h, sRatio=1;
+    			if(isResp) {
+    				if((respDim=='width'&&lastW==iw) || (respDim=='height'&&lastH==ih)) {
+    					sRatio = lastS;
+    				}
+    				else if(!isScale) {
+    					if(iw<w || ih<h)
+    						sRatio = Math.min(xRatio, yRatio);
+    				}
+    				else if(scaleType==1) {
+    					sRatio = Math.min(xRatio, yRatio);
+    				}
+    				else if(scaleType==2) {
+    					sRatio = Math.max(xRatio, yRatio);
+    				}
+    			}
+    			canvas.width = w*pRatio*sRatio;
+    			canvas.height = h*pRatio*sRatio;
+    			canvas.style.width = dom_overlay_container.style.width = anim_container.style.width =  w*sRatio+'px';
+    			canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = h*sRatio+'px';
+    			stage.scaleX = pRatio*sRatio;
+    			stage.scaleY = pRatio*sRatio;
+    			lastW = iw; lastH = ih; lastS = sRatio;
+    			stage.tickOnUpdate = false;
+    			stage.update();
+    			stage.tickOnUpdate = true;
+    		}
+    	}
+    	makeResponsive(true,'both',true,1);
+    	AdobeAn.compositionLoaded(lib.properties.id);
+    	fnStartAnimation();
+    }
+
+  //init3
+
+    function init3() {
+      canvas = document.getElementById("canvas3");
+      anim_container = document.getElementById("animation_container3");
+      dom_overlay_container = document.getElementById("dom_overlay_container");
+      var comp=AdobeAn.getComposition("2D07AF0107894FF085D4B00A05E63071");
+      var lib=comp.getLibrary();
+      handleComplete3({},comp);
+    }
+    function handleComplete3(evt,comp) {
+      //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+      var lib=comp.getLibrary();
+      var ss=comp.getSpriteSheet();
+      exportRoot = new lib.Animation3();
+      stage = new lib.Stage(canvas3);
+      //Registers the "tick" event listener.
+      fnStartAnimation = function() {
+        stage.addChild(exportRoot);
+        createjs.Ticker.setFPS(lib.properties.fps);
+        createjs.Ticker.addEventListener("tick", stage);
+      }
+      //Code to support hidpi screens and responsive scaling.
+      function makeResponsive(isResp, respDim, isScale, scaleType) {
+        var lastW, lastH, lastS=1;
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        function resizeCanvas() {
+          var w = lib.properties.width, h = lib.properties.height;
+          var iw = window.innerWidth, ih=window.innerHeight;
+          var pRatio = window.devicePixelRatio || 1, xRatio=iw/w, yRatio=ih/h, sRatio=1;
+          if(isResp) {
+            if((respDim=='width'&&lastW==iw) || (respDim=='height'&&lastH==ih)) {
+              sRatio = lastS;
+            }
+            else if(!isScale) {
+              if(iw<w || ih<h)
+                sRatio = Math.min(xRatio, yRatio);
+            }
+            else if(scaleType==1) {
+              sRatio = Math.min(xRatio, yRatio);
+            }
+            else if(scaleType==2) {
+              sRatio = Math.max(xRatio, yRatio);
+            }
+          }
+          canvas.width = w*pRatio*sRatio;
+          canvas.height = h*pRatio*sRatio;
+          canvas.style.width = dom_overlay_container.style.width = anim_container.style.width =  w*sRatio+'px';
+          canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = h*sRatio+'px';
+          stage.scaleX = pRatio*sRatio;
+          stage.scaleY = pRatio*sRatio;
+          lastW = iw; lastH = ih; lastS = sRatio;
+          stage.tickOnUpdate = false;
+          stage.update();
+          stage.tickOnUpdate = true;
+        }
+      }
+      makeResponsive(true,'both',true,1);
+      AdobeAn.compositionLoaded(lib.properties.id);
+      fnStartAnimation();
+    }
+
+    function start(){
+      init();
+      init2();
+      init3();
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="jquery.visble.js"></script>
+
+      <script type="text/javascript" src="jquery.flip.js"></script>
+      <script type="text/javascript" src="jquery.min.flip.js"></script>
+    <script>
+    $( document ).ready(function() {
+
+      $( ".item" ).hide();
+      $( "#item1" ).delay( 500 ).fadeIn( 4000 );
+      $( "#item2" ).delay( 1500 ).fadeIn( 7000 );
+        $( "#item4" ).delay( 3000 ).fadeIn( 7000 );
+          $( "#item3" ).delay( 4500 ).fadeIn( 7000 );
+          $( "#item5" ).delay( 0 ).fadeIn( 0 );
+          $( "#item6" ).delay( 0 ).fadeIn( 0 );
+            $( "#item7" ).delay( 0 ).fadeIn( 0 );
+              $( "#item8" ).delay( 0 ).fadeIn( 0 );
+              $( "#item9" ).delay( 500 ).fadeIn( 4000 );
+              $( "#item10" ).delay( 1500 ).fadeIn( 7000 );
+                  $( "#item12" ).delay( 3000 ).fadeIn( 7000 );
+                    $( "#item11" ).delay( 4500 ).fadeIn( 7000 );
+
+
+                    $( "#inesalogo" ).animate({top:"15%",},1500);
+                    $("#bigintro").delay(1000).animate({top:"30%"},1000);
+                    $("#inesaintro").hide();
+                    $("#contact").hide();
+                    $("#inesaintro").delay(1500).fadeIn(2000);
+                      $("#contact").delay(1500).fadeIn(2000);
+
+      $(".img").on("mouseover",function(){
+        $( this ).animate({
+    "width": "100px",
+    "height": "100px",
+  }, 500);
+
+})
+
+  $(".img").on("mouseout",function(){
+    $(this).animate({
+"width": "60px",
+"height": "60px",
+});
+
+
+})
+    });
+
+
+    $(document).ready(function(){
+    $(".titleleft").animate({"left":290},1500) ;
+    $(".pleft").delay(300).animate({"left":290},1500) ;
+
+
+
+  });
+  $(function(){
+    $(".sloganright").flip({
+        trigger: 'hover'
+    });
+});
+
+
+    </script>
+    <script>
+      var navigation = responsiveNav(".nav");
+    </script>
+
+</head>
+<body onload="start()" style = "margin:0;background-image: linear-gradient(-20deg,  #00235b 0%, #141414 100%); overflow: hidden;">
+<div id = navback>
+<div>
+<nav class = nav>
+<ul id="menu">
+  <li data-menuanchor="6thPage"><a href="#6thPage">用户指南</a></li>
+  <li data-menuanchor="5thPage"><a href="#5thPage">试用</a></li>
+    <li data-menuanchor="4thPage"><a href="#4thPage">关于我们</a></li>
+    <li data-menuanchor="3rdPage"><a href="#3rdPage">媒体动态</a></li>
+      <li data-menuanchor="secondPage"><a href="#secondPage">典型案例</a></li>
+    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">核心技术</a></li>
+    <a href = "#firstPage" ><img src="logo.png" alt = "i-stacklogo" id = "logo"></a>
+
+</ul>
+</nav>
+
+
+<div id="fullpage">
+    <div class="section" id="section0">
+        <div class="intro">
+          <h1 style = "color:rgba(255,255,255,1); text-shadow: 3px 3px 10px #416ebf;"><strong>i-stack</strong></h1>
+          <h2 style = "color:rgba(255,255,255,1);text-shadow: 3px 3px 10px #416ebf;">智慧城市云操作系统</h2>
+          <br>
+          <p style = "color:rgba(255,255,255,1);">
+            可视化监控 &nbsp; · &nbsp; 动态迁移 &nbsp; · &nbsp; 云端资源自动调整  &nbsp;·  &nbsp;裸机管理
+            <br>
+          <span id = "english">Visual Monitering · Dynamic Migration · Automatic Adjustment of Cloud Resource · Bare Computer Management</span>
+
+          </p>
+          <div class="bounce">
+            <a href = "#techintro">
+            技术介绍 >>
+          </a>
+            </div>
+        </div>
+    <div id = "3dbgframe">
+      <canvas id = "canvas5">
+        <script>
+        var screen_canvas = document.getElementById('canvas5');
+
+        var updateFcts	= [];
+        	var scene	= new THREE.Scene();
+        	scene.fog	= new THREE.FogExp2(0xd0e0f0, 0.0025 );
+
+        	var renderer	= new THREE.WebGLRenderer( { antialias: false } );
+        	renderer.setSize( window.innerWidth, window.innerHeight );
+        	document.body.appendChild( renderer.domElement );
+
+        	//////////////////////////////////////////////////////////////////////////////////
+        	//		comment								//
+        	//////////////////////////////////////////////////////////////////////////////////
+
+        	var camera		= new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 3000)
+        	camera.position.y	= 80
+
+        	//////////////////////////////////////////////////////////////////////////////////
+        	//		add an object and make it move					//
+        	//////////////////////////////////////////////////////////////////////////////////
+        	var light	= new THREE.HemisphereLight( 0xffffff, 0x001e47, 1 );
+        	light.position.set( 0.75, 1, 0.25 );
+        	scene.add( light );
+
+        	var material	= new THREE.MeshBasicMaterial({ color: 0x101018 })
+        	var geometry	= new THREE.PlaneGeometry( 2000, 2000 )
+        	var plane	= new THREE.Mesh( geometry, material );
+        	plane.rotation.x= - 90 * Math.PI / 180;
+        	scene.add( plane );
+
+        	//////////////////////////////////////////////////////////////////////////////////
+        	//		comment								//
+        	//////////////////////////////////////////////////////////////////////////////////
+
+        	var city	= new THREEx.ProceduralCity()
+        	scene.add(city)
+
+
+        	//////////////////////////////////////////////////////////////////////////////////
+        	//		Camera Controls							//
+        	//////////////////////////////////////////////////////////////////////////////////
+        	var controls	= new THREE.FirstPersonControls( camera );
+        	controls.movementSpeed	= 30;
+        	controls.lookSpeed	= 0.02;
+        	controls.lookVertical	= false;
+        	updateFcts.push(function(delta, now){
+        		controls.update( delta );
+        	})
+
+        	//////////////////////////////////////////////////////////////////////////////////
+        	//		render the scene						//
+        	//////////////////////////////////////////////////////////////////////////////////
+        	updateFcts.push(function(){
+        		renderer.render( scene, camera );
+        	})
+
+        	//////////////////////////////////////////////////////////////////////////////////
+        	//		loop runner							//
+        	//////////////////////////////////////////////////////////////////////////////////
+        	var lastTimeMsec= null
+        	requestAnimationFrame(function animate(nowMsec){
+        		// keep looping
+        		requestAnimationFrame( animate );
+        		// measure time
+        		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
+        		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
+        		lastTimeMsec	= nowMsec
+        		// call each update function
+        		updateFcts.forEach(function(updateFn){
+        			updateFn(deltaMsec/1000, nowMsec/1000)
+        		})
+        	})
+
+
+        	function onMouseMove(event) {
+
+        	    // Update the mouse variable
+        	    event.preventDefault();
+        	    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        	    mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+        	    // Make the sphere follow the mouse
+        	    mouseMesh.position.set(event.clientX, event.clientY, 0);
+        	};
+
+        </script>
+      </canvas>
+    </div>
+    </div>
+
+  <div class="section" id="section1">
+
+			<div class="intro" id ="intro">
+
+    </div>
+  </div>
+  <div class = "section" id = "section2" href = "#tech1">
+    <div class = "pagewhite">
+
+    <div class = "item" id = "item1">
+      <img src = "images/一键安装.svg" class = "img" alt ="一键安装">
+      <h3>一健安装</h3>
+      <p class = "desc">
+        i-stack的高可用以及非高可用架构模型都支持多节点集群的一键快速安装，配置部署简单方便可靠。
+      </p>
+    </div>
+    <div class = "item" id = "item2">
+      <img src = "images/高性能.svg" class = "img" alt ="高性能">
+      <h3>高性能</h3>
+      <p class = "desc">
+        i-stack通过对云平台系统各组件的配置协调，优化结构参数，实现并通过了社区标准压力测试中的高并发虚拟机启停，在使用2个计算节点的高可用部署环境下，支持最高600台虚拟机同时启停，成功率100%。
+      </p>
+    </div>
+    <div class = "item" id = "item3">
+      <img src = "images/高可用.svg" class = "img" alt ="高可用">
+      <h3>高可用</h3>
+      <p class = "desc">
+      i-stack采用高可用架构的解决方案来部署整个系统，任意单个节点（控制，网络，存储，计算）的故障或者宕机，都不会影响整个系统的服务状态，也不会丢失任何数据，全面保证了系统的稳定性和可靠性。
+      </p>
+    </div>
+    <div class = "item" id = "item4">
+      <img src = "images/访问安全.svg" class = "img" alt ="访问安全">
+      <h3>访问安全</h3>
+      <p class = "desc">
+      i-stack提供完整的用户虚拟机的密码管理，密钥管理，安全组管理等访问控制功能，最大限度地保证用户应用的安全。
+      </p>
+    </div>
+
+    <div id="animation_container" style="width:800px;height:800px;">
+      <canvas id="canvas" width="800" height="800" ></canvas>
+      <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; position:absolute;width:800px; height:800px; ">
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+  <div class = "section" id = "section2" href = "#tech2">
+    <div class = "item" id = "item5">
+      <img src = "images/多数据中心.svg" class = "img" alt ="多数据中心">
+      <h3>多数据中心</h3>
+      <p class = "desc">
+        istack的架构支持在多个数据中心之间部署同一套云平台系统，可以使用户通过统一界面管理多个数据中心内的资源。
+      </p>
+    </div>
+    <div class = "item" id = "item6">
+      <img src = "images/云端资源自动调整.svg" class = "img" alt ="云端资源自动调整">
+      <h3>云端资源自动调整</h3>
+      <p class = "desc">
+      i-stack在社区编排服务的基础上，经过业务抽象整合，为用户提供了适应于不同负载情况下自动调整云组件（如网络，实例，存储设备等）的方法。该功能可以减少平台运维人员的压力，而且可以快速高效地调整服务器的状态以应对高并发的请求，减少管理成本。
+      </p>
+    </div>
+    <div class = "item" id = "item7">
+      <img src = "images/大文件上传.svg" class = "img" alt ="大文件上传">
+      <h3>大文件上传</h3>
+      <p class = "desc">
+        i-stack对云平台的对象存储功能进行扩展，提供用户的大文件分片上传服务，并且支持断点续传功能。可以方便灵活地帮助用户管理文件对象数据。
+      </p>
+    </div>
+    <div class = "item" id = "item8">
+      <img src = "images/负载均衡.svg" class = "img" alt ="负载均衡">
+      <h3>负载均衡</h3>
+      <p class = "desc">
+        根据用户服务的访问量弹性配置服务器资源，提高用户服务的可用性和可扩展性，最大限度的保证用户服务的稳定性，节省用户的资源消耗。
+      </p>
+    </div>
+    <div id="animation_container2">
+      <canvas id="canvas2" width="1600" height="1600"></canvas>
+      <div id="dom_overlay_container2" style="pointer-events:none; overflow:hidden; position:absolute;width:800px; height:800px;  ">
+      </div>
+    </div>
+  </div>
+
+  <div class = "section" id = "section2" href= "#tech3">
+
+    <div class = "item" id = "item9">
+      <img src = "images/实时调整.svg" class = "img" alt ="实时调整">
+      <h3>实时调整</h3>
+      <p class = "desc">
+        i-stack支持虚拟机资源配置的动态调整，在虚拟机正常运行的情况下，用户可以对虚拟机的内存资源和CPU资源进行实时动态调整，保障应用服务实时性和稳定性的要求。
+      </p>
+    </div>
+    <div class = "item" id = "item10">
+      <img src = "images/动态迁移.svg" class = "img" alt ="动态迁移">
+      <h3>动态迁移</h3>
+      <p class = "desc">
+        将整个虚拟机的运行状态完整保存下来，同时可以快速的恢复到原有硬件平台甚至是不同硬件平台上。恢复以后，虚拟机仍旧平滑运行，用户不会察觉到任何差异。
+      </p>
+    </div>
+    <div class = "item" id = "item11">
+      <img src = "images/裸机管理.svg" class = "img" alt ="裸机管理">
+      <h3>裸机管理</h3>
+      <p class = "desc">
+      集成了裸机服务，实现管理物理主机的声明周期，可以对“裸”操作系统的物理主机进行管理，从物理主机上架安装操作系统到物理主机下架维修。我们可以像管理虚拟机一样地管理主机，该项目有效地解决物理主机的添加，删除，电源管理，操作系统升级等问题。
+      </p>
+    </div>
+    <div class = "item" id = "item12">
+      <img src = "images/可视化管理.svg" class = "img" alt ="可视化管理">
+      <h3>可视化管理</h3>
+      <p class = "desc">
+        i-stack提供独立完整的可视化监控系统，使用统一的页面帮助用户实现对系统整体资源池和每一台应用服务器进行监控。
+      </p>
+    </div>
+    <div id="animation_container3" >
+      <canvas id="canvas3" width="1200" height="1200"></canvas>
+      <div id="dom_overlay_container3" style="pointer-events:none; overflow:hidden; position:absolute;width:800px; height:800px;  ">
+      </div>
+    </div>
+  </div>
+
+    <div class="section" id="section3" >
+
+<div class = "titleleft">
+<h2><li>食品溯源 Food Traceability</li><h2>
+</div>
+
+<div class = "pleft">
+<p>
+  食品追溯管理系统需要打造统一管理平台，设立城市数据中心，构建追溯基础网络，接入现有局部应用，通过分层建设，达到平台能力及应用的可成长，可扩充，创造面向未来的食品安全平台。
+助力政府：使食品安全诚信保障监管体系系统化使现有食品安全标准化，提升监管效能。<br>
+<strong>社会诚信</strong>：为公众提供具有公信力的食品安全信息平台。<br>
+<strong>社会发展</strong>：提升企业诚信度和管理水平，推动企业发展。
+</p>
+</div>
+<div class= "sloganright" >
+  <div class = "front" id = "front1">
+<h3>  打造完整食品安全生态系统</h3>
+<p>  CREATE COMPLETE ECOLOGICAL SYSTEM OF FOOD SAFETY</p>
+<img src = "images/转换.png" style = "width:50px;margin-top:20px;">
+</div>
+<div class = "back">
+<h3> 上海食品安全信息追溯平台</h3>
+
+<a href = "http://www.shfda.org/">了解详情</a>
+</div>
+</div>
+<img class = "descimg" src = "images/traceability.png">
+
+    </div>
+    <div class="section" id="section4">
+      <div class = "titleleft">
+      <h2><li>智慧园区 Intelligent Park</li><h2>
+      </div>
+
+      <div class = "pleft">
+      <p id="pleft2">
+        园区的管理是全方位、多层次的管理。一般而言园区规模都比较大，领导者管理半径与管理纵深相应变大，做出准确决策的难度大大增加。从项目、公司、到各行业、各部门的逐级监控管理问题，不同市场环境的兼顾适应与风险控制问题，专业分工细化带来的资源整合及协调问题等等，都是园区在管理中所面临的挑战。
+事实上，园区管理单位所承担的责任，与基层地方政府所承担的责任非常近似，不仅要负责整个园区的管理，同时还要负责园区的产业推进，招商引资、应急处置、内部服务等等各种服务与管理工作，因此必须建设一个强大的园区服务平台来进行支持，同时依托平台，促进园区的管理部门、企业、合作单位良性互动。
+      </p>
+      </div>
+      <div class= "sloganright" >
+        <div class = "front" id = "front2">
+      <h3>  创建细化智能社区</h3>
+      <p> CREATE REFINED SMART COMMUNITIES </p>
+      <img src = "images/转换.png" style = "width:50px;margin-top:20px;">
+      </div>
+      <div class = "back">
+      <h3> 仪电i-stack<br>智慧城市云<br>操作系统</h3>
+
+      <a href = "http://smartcity.i-stack.org:8088/dashboard/index">了解详情</a>
+      </div>
+      </div>
+      <img class = "descimg" src = "images/park.png">
+
+          </div>
+
+    <div class="section" id="section5">
+
+      <div class = "titleleft">
+      <h2 style = "font-size:1.8em;"><li>智慧路灯网 Smart Street Lamp Network</li><h2>
+      </div>
+
+      <div class = "pleft">
+      <p id="pleft3">
+        智慧路灯网
+"智慧路灯网" 是在由路灯所组成的公共基础设施网络平台上，借助无线通信/4G等现代信息化技术手段，组建信息感知和传输网；以i-stack智慧城市云操作系统为管理后台，实现大数据交互环境下的智慧照明，智慧交通，无线城市，多媒体信息发布等智慧城市管理核心功能，为智慧城市提供增值服务。
+      </p>
+      </div>
+      <div class= "sloganright" >
+        <div class = "front" id = "front3">
+      <h3> 点亮城市智慧使生活更敞亮</h3>
+      <p> IGNITE WISDOM OF OUR CITY FOR BETTER LIFESTYLE </p>
+      <img src = "images/转换.png" style = "width:50px;margin-top:20px;">
+      </div>
+      <div class = "back">
+      <h3> 智能路灯网</h3>
+      </div>
+      </div>
+      <img class = "descimg" src = "images/lamp.png" style="height:330px;">
+
+    </div>
+    <div class="section" id="section6">
+<div class = "event" id="event1">
+<img src = "images/1.jpg" style= "float:left;margin:10px">
+<br><p><span style = "font-size:2em">2017年7月25日，</span>上海仪电应邀参加由工业和信息化部指导、中国信息通信研究院和中国通信标准化协会主办、数据中心联盟和云计算开源产业联盟承办的2017可信云大会。会议宣布，由上海仪电中央研究院自主研发的INESA i-stack（仪电i-stack智慧城市云操作系统）正式通过可信云开源解决方案认证，标志着INESA i-stack继续保持国内开源云计算平台领先水平。</p>
+
+</div>
+<div class = "event" id="event2">
+<img src = "images/2.jpg" style= "float:right;margin:10px">
+<br><br><br><br><br><br><br><p><span style = "font-size:2em">2016年12月7日，</span>  上海仪电受邀参加在贵阳举行的全国信息标准委员会首届“软件定义服务”论坛。会上，由上海仪电中央研究院自主研发的“仪电i-stack智慧城市云操作系统”正式通过工信部ITSS云计算服务能力标准认证，成为首批试点单位。</p>
+
+</div>
+<div class = "event" id="event3">
+<img src = "images/3.jpg" style= "float:left;margin:10px">
+<br><p><span style = "font-size:2em">2014年11月6日，</span>在上海交通大学专场招聘会，同学们对中央研究院产生了浓厚的兴趣。</p>
+
+</div>
+
+<div class = "event" id="event4">
+<img src = "images/4.jpg" style= "float:right;margin:10px">
+<br><br><br><br><br><Br><br><br><p><span style = "font-size:2em">2014年11月5日，</span>  在同济大学专场招聘会，同学们认真答题。</p>
+
+</div>
+<div class = "event" id="event5">
+<img src = "images/5.jpg" style= "float:left;margin:10px;width:300px;">
+<img src = "images/6.jpg" style= "float:left;margin:10px;width:300px;">
+<br><p>射箭活动，团队建设。<br><br> 张副院长与研究院团队人员在工博会上。</p>
+
+</div>
+<div class = "event" id="event6">
+<img src = "images/7.jpg" style= "float:right;margin:10px">
+<br><br><br><br><br><Br><br><br><p style="margin-left:20px;">王董事长，蔡总裁，蒋副总裁和黄院长兼副总裁在签约仪式上；<br>杨副院长与合作伙伴签约。</p>
+
+</div>
+
+    </div>
+    <div class="section" id="section7">
+      <img src ="images/inesalogo.png" id = "inesalogo">
+<div id = "bigintro">
+  <div id = "inesaintro">
+<h2>仪电中央研究院 <Br> <span> INESA R&D CENTER</span></h2>
+<p style ="text-align:left;margin-top:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上海仪电（集团）有限公司是上海市国资委所属国有全资的集团有限公司。仪电中央研究院是仪电集团旗下的研发机构，负责集团整体战略技术架构的搭建，研发及提升。
+  <br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仪电中央研究院的使命是创新物联网与云计算技术；为仪电集团建立先进的ICT(信息，通信，技术)技术研发平台；助推集团战略目标的实现；成为智慧城市管理技术的领导者，为人们提供更为优质的生活。
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仪电中央研究院是仪电集团的核心技术智囊团，承担前瞻性、关键性产品的研发，评估协助集团技术/团队收购，并推进技术公司的孵化。其定义及部署战略性解决方案框架及技术规划，为集团愿景与使命提供商务智能与技术支撑。研究院是一家提供智慧城市服务解决方案的公司。目前，作为智慧城市管理大脑的创新集成型架构i-stack（INESA Stack）已投入研发，为智慧城市提供服务。
+
+中央研究院拥有一支快速发展、充满活力的20人尖端工程研发团队，平均年龄29岁，成员紧密合作，共同成长。有来自于政府的大力支持，研究院诚邀各领域精英加入!</p>
+</div>
+<div id ="contact" >
+<img src = "images/地址.png" style="width:30px;float:left;"><h5 class = "con" style ="text-align:left;font-size:1.2em;color:lightgrey;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国上海市虹漕路39号</h5><br><br>
+<img src = "images/电话.png" style="width:30px;float:left;"><h5 class = "con"style ="text-align:left;font-size:1.2em;color:lightgrey;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;021-6485 3005</h5><br><br>
+<img src = "images/邮件.png" style="width:30px;float:left;"><h5 class = "con"style ="text-align:left;font-size:1.2em;color:lightgrey;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contact_us@rc.inesa.com</h5><br><br>
+<img src = "images/网站.png" style="width:30px;float:left;"><h5 class = "con"style ="text-align:left;font-size:1.2em; color:lightgrey;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.inesa.com/</h5><br><br>
+</div>
+</div>
+    </div>
+    <div class="section" id="section8">
+        <h1 style ="color:white"><a href = "http://www.i-stack.org/regist.htm">试用 </a> </h1>
+
+</div>
+    <div class="section" id="section9">
+
+          <div id = "guide">
+        <object id="obj" data="guide.pdf" ></object>
+      </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="fullpage.js"></script>
+<script type="text/javascript" src="jquery.fullpage.js"></script>
+<script type="text/javascript" src="examples.js"></script>
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        sectionsColor: [  , ,"#7aadd3" , "#7aadd3","#7aadd3" ,"#ffffff","#ffffff","#ffffff","#dbdbdb","#ffffff","#514646" , "#514646"],
+        anchors: ['firstPage', 'techintro','tech1','tech2','tech3','secondPage','secondPage','secondPage', '3rdPage','4thPage',"5thPage","6thPage"],
+        navigation:true,
+
+        showActiveTooltip: true,
+        menu: '#menu',
+    });
+
+
+</script>
+
+</body>
+</html>
